@@ -1,0 +1,41 @@
+import React from "react";
+import FetchApiJson from "../Utils/FetApiContents";
+import UrlBuilder from "../Utils/UrlBuilder";
+import {
+  NBA_PLAYERS_ON_TEAM,
+  NBA_TEAMS,
+} from "../../../public/utils/constants";
+
+interface TeamProp {
+  teamId: number;
+  teamName: string;
+}
+
+const urlBuilder = new UrlBuilder(NBA_PLAYERS_ON_TEAM);
+
+const Page = async ({ teamId, teamName }: TeamProp) => {
+  urlBuilder.addParam("team", teamId);
+  let data = await FetchApiJson({ api: urlBuilder.build() });
+  console.log(data);
+  return (
+    <>
+      <h1>{teamName} Page</h1>
+      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th>Player Name</th>
+            <th>Age</th>
+            <th>Height</th>
+            <th>Averages</th>
+            <th>Position</th>
+            <th>College</th>
+            <th>Draft Pick</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </>
+  );
+};
+
+export default Page;
