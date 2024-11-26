@@ -1,10 +1,7 @@
 import React from "react";
-import FetchApiJson from "../Utils/FetApiContents";
-import UrlBuilder from "../Utils/UrlBuilder";
-import {
-  NBA_PLAYERS_ON_TEAM,
-  NBA_TEAMS,
-} from "../../../public/utils/constants";
+import FetchApiJson from "../../Utils/FetApiContents";
+import UrlBuilder from "../../Utils/UrlBuilder";
+import { NBA_PLAYERS_ON_TEAM } from "../../../../public/utils/constants";
 
 interface TeamProp {
   teamId: number;
@@ -13,7 +10,7 @@ interface TeamProp {
 
 const urlBuilder = new UrlBuilder(NBA_PLAYERS_ON_TEAM);
 
-const Page = async ({ teamId, teamName }: TeamProp) => {
+const TeamDetails = async ({ teamName, teamId }: TeamProp) => {
   urlBuilder.addParam("team", teamId);
   let data = await FetchApiJson({ api: urlBuilder.build() });
   console.log(data);
@@ -38,4 +35,4 @@ const Page = async ({ teamId, teamName }: TeamProp) => {
   );
 };
 
-export default Page;
+export default TeamDetails;

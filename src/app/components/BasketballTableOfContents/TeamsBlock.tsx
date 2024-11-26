@@ -1,6 +1,5 @@
 "use server;";
 import React from "react";
-import Image from "next/image";
 
 interface TeamsBlockProp {
   name: string;
