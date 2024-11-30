@@ -6,14 +6,13 @@ import ObjectMapperFactory from "./Utils/Mapper/ObjectMapperFactory";
 import FetchApiJson from "./Utils/FetApiContents";
 import { NBA_TEAMS } from "../../public/utils/constants";
 import Model from "./models/Model";
+import TeamsAPIResponseModel from "./models/TeamsAPIResposneModel";
 
-export function getObjectMapper(model: Model): ObjectMapper | null {
-  let objectMapper: ObjectMapper;
+export function getObjectMapper(modelClassName: string): ObjectMapper {
   try {
-    return ObjectMapperFactory.buildFactory(model.getName());
+    return ObjectMapperFactory.buildFactory(modelClassName);
   } catch (e) {
-    console.error("An erorr occurred: ", e);
-    return null;
+    throw e;
   }
 }
 
@@ -23,9 +22,12 @@ export default function Home() {
   useEffect(() => {
     console.log("running");
     const urlBuilder = new UrlBuilder(NBA_TEAMS);
+    
     try {
+      const objectMapper:ObjectMapper = getObjectMapper(TeamsAPIResponseModel.name);
       FetchApiJson({ api: urlBuilder.build() }).then((result: Response) => {
-        console.log(result);
+        console.log(result)
+        objectMapper.map(result);
       });
     } catch (e) {
       console.error("An Error has occurred: ", e);

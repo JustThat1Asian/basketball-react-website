@@ -5,10 +5,10 @@ import Modle from "@/app/models/Model";
 export default class ObjectMapperFactory {
   static buildFactory(apiGet: string): ObjectMapper {
     switch (apiGet) {
-      case "teams/":
+      case "TeamsAPIResponseModel":
         return new TeamResponseMapper();
       default:
-        throw Error("No Mapper Exist for this Modle");
+        throw new MapperNotFoundError("No Mapper Exist for this Modle");
     }
   }
 }

@@ -8,9 +8,6 @@ export default class TeamsAPIResponseModel extends Model {
   #results: number = -1;
   #filters: string[] = [];
   #teams: Team[] = [];
-  constructor() {
-    super("TeamsAPIResponseModel");
-  }
 
   getStatus() {
     return this.#status;
