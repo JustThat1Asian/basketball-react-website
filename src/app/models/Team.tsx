@@ -5,9 +5,9 @@ export default class Team {
   #teamId: number = -1;
   #nickName: string = "";
   #logo: string = "";
-  #shortName: string = "";
-  #allStar: number = -1;
-  #nbaFranchise: number = -1;
+  #code: string = "";
+  #allStar: boolean = false;
+  #nbaFranchise: boolean = false;
   #leagues: Leagues | null = null;
 
   constructor() {}
@@ -26,46 +26,55 @@ export default class Team {
   getLogo() {
     return this.#logo;
   }
-  getShortName() {
-    return this.#shortName;
+  getcode() {
+    return this.#code;
   }
   getAllStar() {
     return this.#allStar;
   }
   isNbaFranchise() {
-    return this.#nbaFranchise === 1;
+    return this.#nbaFranchise;
   }
   isAllStar() {
-    return this.#allStar === 1;
+    return this.#allStar;
   }
   getLeagues() {
     return this.#leagues;
   }
   setCity(city: string) {
     this.#city = city;
+    return this;
   }
   setFullName(fullName: string) {
     this.#fullName = fullName;
+    return this;
   }
   setTeamId(teamId: number) {
     this.#teamId = teamId;
+    return this;
   }
   setNickName(nickName: string) {
     this.#nickName = nickName;
+    return this;
   }
   setLogo(logo: string) {
     this.#logo = logo;
+    return this;
   }
-  setShortName(shortName: string) {
-    this.#shortName = shortName;
+  setCode(code: string) {
+    this.#code = code;
+    return this;
   }
-  setAllStart(allStar: number) {
+  setAllStar(allStar: boolean) {
     this.#allStar = allStar;
+    return this;
   }
-  setNbaFranchise(nbaFranchise: number) {
+  setNbaFranchise(nbaFranchise: boolean) {
     this.#nbaFranchise = nbaFranchise;
+    return this;
   }
   setLeagues(leagues: Leagues | null) {
     this.#leagues = leagues;
+    return this;
   }
 }

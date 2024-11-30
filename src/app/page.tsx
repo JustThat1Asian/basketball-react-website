@@ -25,7 +25,6 @@ export default function Home() {
     try {
       const objectMapper:ObjectMapper = getObjectMapper(TeamsAPIResponseModel.name);
       FetchApiJson({ api: urlBuilder.build() }).then((result: Response) => {
-        console.log(result)
         objectMapper.map(result);
       });
     } catch (e) {

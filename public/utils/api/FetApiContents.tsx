@@ -2,19 +2,27 @@ interface ApiProp {
   api: string;
 }
 
-const FetchApiJson = async ({ api }: ApiProp): Promise<Response> => {
-  const res: Response = await fetch(`${api}`, {
+const FetchApiJson = ({ api }: ApiProp): Promise<Response> => {
+  return fetch(`${api}`, {
     method: "GET",
     headers: {
       method: "GET",
       "x-rapidapi-key": GetAPIKey(),
       "x-rapidapi-host": "api-nba-v1.p.rapidapi.com", // Using environment variable for API key
     } as Record<string, string>,
-  });
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
+  }).then( response => {
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    return response.json();
   }
-  return res.json();
+  ).catch(error=>
+  {
+    console.error("Error: ", error);
+    throw error;
+  }
+  )
+  
 };
 
 const GetAPIKey = () => {
