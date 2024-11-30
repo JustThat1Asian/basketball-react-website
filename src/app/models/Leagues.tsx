@@ -1,31 +1,16 @@
 import League from "./League";
 export default class Leagues {
-  #standard: League | null;
-  #vegas: League | null;
-  #utah: League | null;
+  #leagues: Map<string, League> = new Map();
 
-  constructor() {
-    this.#standard = null;
-    this.#vegas = null;
-    this.#utah = null;
+  getLeague() {
+    return this.#leagues;
   }
-
-  getStandard() {
-    return this.#standard;
+  delLeague(league: string) {
+    this.#leagues.delete(league);
+    return this;
   }
-  getVegas() {
-    return this.#vegas;
-  }
-  getUtah() {
-    return this.#utah;
-  }
-  setStandard(standard: League) {
-    this.#standard = standard;
-  }
-  setVegas(vegas: League) {
-    this.#vegas = vegas;
-  }
-  setUtah(utah: League) {
-    this.#utah = utah;
+  addLeague(league: League) {
+    this.#leagues.set(league.getConfName(), league);
+    return this;
   }
 }

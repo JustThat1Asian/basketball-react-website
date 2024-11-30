@@ -2,14 +2,14 @@ import { stat } from "fs";
 import Team from "./Team";
 import Model from "./Model";
 
-export default class TeamsAPIResposneModel extends Model {
+export default class TeamsAPIResponseModel extends Model {
   #status: number = -1;
   #message: string = "";
   #results: number = -1;
   #filters: string[] = [];
   #teams: Team[] = [];
   constructor() {
-    super("TeamsAPIResposneModel");
+    super("TeamsAPIResponseModel");
   }
 
   getStatus() {
