@@ -1,6 +1,6 @@
 import React from "react";
-import FetchApiJson from "../../Utils/FetApiContents";
-import UrlBuilder from "../../Utils/UrlBuilder";
+import FetchApiJson from "../../../../public/utils/api/FetApiContents";
+import UrlBuilder from "../../../../public/utils/api/UrlBuilder";
 import { NBA_PLAYERS_ON_TEAM } from "../../../../public/utils/constants";
 
 interface TeamProp {

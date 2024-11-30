@@ -1,11 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-import UrlBuilder from "./Utils/UrlBuilder";
-import ObjectMapper from "./Utils/Mapper/ObjectMapper";
-import ObjectMapperFactory from "./Utils/Mapper/ObjectMapperFactory";
-import FetchApiJson from "./Utils/FetApiContents";
+import UrlBuilder from "../../public/utils/api/UrlBuilder";
+import ObjectMapper from "../../public/utils/Mapper/ObjectMapper";
+import ObjectMapperFactory from "../../public/utils/Mapper/ObjectMapperFactory";
+import FetchApiJson from "../../public/utils/api/FetApiContents";
 import { NBA_TEAMS } from "../../public/utils/constants";
-import Model from "./models/Model";
 import TeamsAPIResponseModel from "./models/TeamsAPIResposneModel";
 
 export function getObjectMapper(modelClassName: string): ObjectMapper {
