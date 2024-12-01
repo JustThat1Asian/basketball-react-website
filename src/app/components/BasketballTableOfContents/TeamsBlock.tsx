@@ -1,20 +1,18 @@
 "use server;";
+import Team from "@/app/models/Team";
 import React from "react";
 
 interface TeamsBlockProp {
-  name: string;
-  id: number;
-  teamCode: string;
-  nickName: string;
+  team: Team;
 }
 
-const TeamsBlock = ({ name, id, teamCode, nickName }: TeamsBlockProp) => {
+const TeamsBlock = ({ team }: TeamsBlockProp) => {
   return (
-    <tr key={id}>
-      <td>{id}</td>
-      <td>{name}</td>
-      <td>{nickName}</td>
-      <td>{teamCode}</td>
+    <tr key={team.getTeamId()}>
+      <td>{team.getTeamId()}</td>
+      <td>{team.getFullName()}</td>
+      <td>{team.getNickName()}</td>
+      <td>{team.getCode()}</td>
     </tr>
   );
 };

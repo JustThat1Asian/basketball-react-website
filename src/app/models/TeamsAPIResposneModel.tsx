@@ -1,4 +1,3 @@
-import { stat } from "fs";
 import Team from "./Team";
 import Model from "./Model";
 

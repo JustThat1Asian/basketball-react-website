@@ -1,8 +1,12 @@
 import Team from "@/app/models/Team";
 import TeamsBlock from "./TeamsBlock";
-import TeamsAPIResposneModel from "@/app/models/TeamsAPIResposneModel";
+import TeamsAPIResponseModel from "@/app/models/TeamsAPIResposneModel";
 
-const BasketBallInfo = (data: TeamsAPIResposneModel) => {
+interface BaksetBallInfoProps{
+  data: TeamsAPIResponseModel;
+}
+
+const BasketBallInfo = ({data}: BaksetBallInfoProps) => {
   return (
     <>
       <h1>Current Teams</h1>
@@ -15,17 +19,17 @@ const BasketBallInfo = (data: TeamsAPIResposneModel) => {
             <th>Team Code</th>
           </tr>
         </thead>
-        <tbody key="tableOfContentBody"></tbody>
-        {data.getTeams().map((team: Team) => {
-          return (
-            <TeamsBlock
-              name={team.getFullName()}
-              id={team.getTeamId()}
-              teamCode={team.getShortName()}
-              nickName={team.getNickName()}
-            />
-          );
-        })}
+        <tbody key="tableOfContentBody">
+          {data.getTeams().map((team: Team) => {
+            return (
+              <TeamsBlock 
+              key={team.getTeamId()}
+              team={team}
+              />
+            );
+          })}
+        </tbody>
+        
       </table>
     </>
   );

@@ -26,7 +26,7 @@ export default class Team {
   getLogo() {
     return this.#logo;
   }
-  getcode() {
+  getCode() {
     return this.#code;
   }
   getAllStar() {

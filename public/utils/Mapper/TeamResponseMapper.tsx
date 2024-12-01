@@ -8,8 +8,7 @@ import League from "@/app/models/League";
 export default class TeamResponseMapper extends ObjectMapper {
   #returnObject:TeamsAPIResponseModel = new TeamsAPIResponseModel();
 
-  map(data: any): Model {
-    console.log(data);
+  map(data: any): TeamsAPIResponseModel {
     Object.entries(data).forEach(([key, value]) => {
       this.#mapHelper(key, value);
     });
@@ -32,7 +31,6 @@ export default class TeamResponseMapper extends ObjectMapper {
   }
 
   #createTeamFromResponse(team:any):Team {
-    console.log(`allStar Value: ${team.allStar} | allStarType: ${typeof(team.allStar)}`)
     let retunTeam:Team = new Team();
     return retunTeam
     .setAllStar(team.allStar)
