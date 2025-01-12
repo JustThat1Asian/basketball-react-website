@@ -5,8 +5,8 @@ import Team from "@/app/models/Team";
 import Leagues from "@/app/models/Leagues";
 import League from "@/app/models/League";
 
-export default class TeamResponseMapper extends ObjectMapper {
-  #returnObject:TeamsAPIResponseModel = new TeamsAPIResponseModel();
+export default class TeamResponseMapper implements ObjectMapper {
+  #returnObject: TeamsAPIResponseModel = new TeamsAPIResponseModel();
 
   map(data: any): TeamsAPIResponseModel {
     Object.entries(data).forEach(([key, value]) => {
@@ -15,8 +15,8 @@ export default class TeamResponseMapper extends ObjectMapper {
     return this.#returnObject;
   }
 
-  #mapHelper(keyString: string, values:any){
-    switch(keyString){
+  #mapHelper(keyString: string, values: any) {
+    switch (keyString) {
       case "response":
         this.#populateTeams(values);
         return;
@@ -24,39 +24,38 @@ export default class TeamResponseMapper extends ObjectMapper {
         return;
     }
   }
-  #populateTeams(teamsListResponse:any) {
-    teamsListResponse.map((team:any)=>{
+  #populateTeams(teamsListResponse: any) {
+    teamsListResponse.map((team: any) => {
       this.#returnObject.addTeam(this.#createTeamFromResponse(team));
-    })
+    });
   }
 
-  #createTeamFromResponse(team:any):Team {
-    let retunTeam:Team = new Team();
+  #createTeamFromResponse(team: any): Team {
+    let retunTeam: Team = new Team();
     return retunTeam
-    .setAllStar(team.allStar)
-    .setCity(team.city)
-    .setFullName(team.name)
-    .setTeamId(team.id)
-    .setLogo(team.logo)
-    .setNbaFranchise(team.nbaFranchise)
-    .setNickName(team.nickname)
-    .setCode(team.code)
-    .setLeagues(this.#createLeaugesFromResponse(team.leagues))
+      .setAllStar(team.allStar)
+      .setCity(team.city)
+      .setFullName(team.name)
+      .setTeamId(team.id)
+      .setLogo(team.logo)
+      .setNbaFranchise(team.nbaFranchise)
+      .setNickName(team.nickname)
+      .setCode(team.code)
+      .setLeagues(this.#createLeaugesFromResponse(team.leagues));
   }
 
-  #createLeaugesFromResponse(leauges:any):Leagues{
+  #createLeaugesFromResponse(leauges: any): Leagues {
     let leagues = new Leagues();
     Object.entries(leauges).forEach(([leaugeName, leaugeInfo]) => {
-      leagues.addLeague(this.#createLeaugeFromResponse(leaugeName, leaugeInfo))
-    })
+      leagues.addLeague(this.#createLeaugeFromResponse(leaugeName, leaugeInfo));
+    });
     return leagues;
-
   }
 
-  #createLeaugeFromResponse(leagueName:string, leagueInfo:any):League{
+  #createLeaugeFromResponse(leagueName: string, leagueInfo: any): League {
     return new League()
-    .setConfName(leagueName)
-    .setConference(leagueInfo.conference)
-    .setDivName(leagueInfo.division)
+      .setConfName(leagueName)
+      .setConference(leagueInfo.conference)
+      .setDivName(leagueInfo.division);
   }
 }
