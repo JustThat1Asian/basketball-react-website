@@ -10,19 +10,17 @@ const FetchApiJson = ({ api }: ApiProp): Promise<Response> => {
       "x-rapidapi-key": GetAPIKey(),
       "x-rapidapi-host": "api-nba-v1.p.rapidapi.com", // Using environment variable for API key
     } as Record<string, string>,
-  }).then( response => {
-    if (!response.ok) {
-      throw new Error("Failed to fetch data");
-    }
-    return response.json();
-  }
-  ).catch(error=>
-  {
-    console.error("Error: ", error);
-    throw error;
-  }
-  )
-  
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("Error: ", error);
+      throw error;
+    });
 };
 
 const GetAPIKey = () => {

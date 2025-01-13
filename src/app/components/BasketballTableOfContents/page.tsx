@@ -1,12 +1,12 @@
 import Team from "@/app/models/Team";
 import TeamsBlock from "./TeamsBlock";
-import TeamsAPIResponseModel from "@/app/models/TeamsAPIResposneModel";
+import TeamsModel from "@/app/models/TeamsModel";
 
-interface BaksetBallInfoProps{
-  data: TeamsAPIResponseModel;
+interface BaksetBallInfoProps {
+  data: TeamsModel;
 }
 
-const BasketBallInfo = ({data}: BaksetBallInfoProps) => {
+const BasketBallInfo = ({ data }: BaksetBallInfoProps) => {
   return (
     <>
       <h1>Current Teams</h1>
@@ -21,15 +21,9 @@ const BasketBallInfo = ({data}: BaksetBallInfoProps) => {
         </thead>
         <tbody key="tableOfContentBody">
           {data.getTeams().map((team: Team) => {
-            return (
-              <TeamsBlock 
-              key={team.getTeamId()}
-              team={team}
-              />
-            );
+            return <TeamsBlock key={team.getTeamId()} team={team} />;
           })}
         </tbody>
-        
       </table>
     </>
   );

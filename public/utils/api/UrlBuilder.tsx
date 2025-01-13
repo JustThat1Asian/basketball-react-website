@@ -1,8 +1,25 @@
 class UrlBuilder {
   #url: string;
   #queryParams: Record<string, string | number> = {};
-  constructor(baseApi: string) {
-    this.#url = baseApi;
+  static #urlBuilder: UrlBuilder;
+  private constructor() {}
+
+  public static getUrlBuilder(): UrlBuilder {
+    if (!UrlBuilder.#urlBuilder) {
+      UrlBuilder.#urlBuilder = new UrlBuilder();
+    }
+    return UrlBuilder.#urlBuilder;
+  }
+
+  setUrl(urL: string) {
+    this.#url = urL;
+    return this;
+  }
+
+  resetUrlBuilder() {
+    this.#url = "";
+    this.#queryParams = {};
+    return this;
   }
 
   addParams(queryParams: Record<string, string | number>) {
@@ -27,7 +44,6 @@ class UrlBuilder {
     Object.entries(this.#queryParams).forEach(([key, value]) => {
       console.log(key, value);
     });
-    return this;
   }
 
   #paramsToString(): string {

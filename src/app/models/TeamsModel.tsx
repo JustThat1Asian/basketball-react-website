@@ -1,7 +1,7 @@
 import Team from "./Team";
 import Model from "./Model";
 
-export default class TeamsAPIResponseModel extends Model {
+export default class TeamsModel extends Model {
   #teams: Team[] = [];
   getTeams() {
     return this.#teams;
@@ -11,7 +11,7 @@ export default class TeamsAPIResponseModel extends Model {
     return this;
   }
 
-  addTeam(team:Team){
+  addTeam(team: Team) {
     this.#teams.push(team);
   }
 }

@@ -4,7 +4,7 @@ import ObjectMapper from "./ObjectMapper";
 export default class ObjectMapperFactory {
   static buildFactory(apiGet: string): ObjectMapper {
     switch (apiGet) {
-      case "TeamsAPIResponseModel":
+      case "TeamsModel":
         return new TeamResponseMapper();
       default:
         throw new MapperNotFoundError("No Mapper Exist for this Modle");

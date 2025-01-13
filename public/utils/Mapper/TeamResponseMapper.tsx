@@ -1,14 +1,14 @@
 import Model from "@/app/models/Model";
 import ObjectMapper from "./ObjectMapper";
-import TeamsAPIResponseModel from "@/app/models/TeamsAPIResposneModel";
+import TeamsModel from "@/app/models/TeamsModel";
 import Team from "@/app/models/Team";
 import Leagues from "@/app/models/Leagues";
 import League from "@/app/models/League";
 
 export default class TeamResponseMapper implements ObjectMapper {
-  #returnObject: TeamsAPIResponseModel = new TeamsAPIResponseModel();
+  #returnObject: TeamsModel = new TeamsModel();
 
-  map(data: any): TeamsAPIResponseModel {
+  map(data: any): TeamsModel {
     Object.entries(data).forEach(([key, value]) => {
       this.#mapHelper(key, value);
     });
